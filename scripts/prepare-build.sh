@@ -7,6 +7,7 @@ ROOT_DIR=$(pwd)
 SOURCE_PATH=$(pwd)/sources
 PACKAGE_PATH=$(pwd)/packages
 BUILD_PATH=$(pwd)/build
+STAGING_PATH=$(pwd)/staging
 
 function download_release {
     cd $SOURCE_PATH
@@ -41,10 +42,12 @@ echo "Cleaning build directory..."
 rm -rf $PACKAGE_PATH
 rm -rf $BUILD_PATH
 rm -rf $SOURCE_PATH
+rm -rf $STAGING_PATH
 
 mkdir -p $PACKAGE_PATH
 mkdir -p $BUILD_PATH
 mkdir -p $SOURCE_PATH
+mkdir -p $STAGING_PATH
 
 # download dependencies
 # download_release "audacity/audacity"

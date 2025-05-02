@@ -38,7 +38,7 @@ jobs:
       - name: Build audacity for arm64
         run: |
           scripts/prepare-build.sh
-          scripts/build-arm64.sh
+          scripts/build.sh arm64
         env:
           APPLE_CODESIGN_IDENTITY: ${{ secrets.APPLE_CODESIGN_IDENTITY }}
 
@@ -46,5 +46,36 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: mod-openvino-arm64
+          path: ${{ env.STAGING_PATH }}/Audacity-OpenVINO.pkg 
+
+  build-openvino-plugins-intel:
+    runs-on: macos-14
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          path: ${{ github.workspace }}
+      
+      - name: Install Apple codesigning certificates
+        uses: apple-actions/import-codesign-certs@v2
+        env:
+          P12_FILE_BASE64: ${{ secrets.APPLE_CERTIFICATE }}
+          P12_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+        if: ${{ env.P12_FILE_BASE64 != '' && env.P12_PASSWORD != '' }}
+        with:
+          p12-file-base64: ${{ secrets.APPLE_CERTIFICATE }}
+          p12-password: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+
+      - name: Build audacity for intel x86_64
+        run: |
+          scripts/prepare-build.sh
+          scripts/build.sh x86_64
+        env:
+          APPLE_CODESIGN_IDENTITY: ${{ secrets.APPLE_CODESIGN_IDENTITY }}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mod-openvino-intel
           path: ${{ env.STAGING_PATH }}/Audacity-OpenVINO.pkg 
 
