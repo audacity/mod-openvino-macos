@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<installer-gui-script minSpecVersion="1">
+    <title>Audacity OpenVINO module</title>
+    
+    <welcome file="Welcome.html"/>
+    <license file="License.html"/>
+    <readme file="ReadMe.html"/>
+    <conclusion file="Conclusion.html"/>
+
+    <options customize="never" require-scripts="false" rootVolumeOnly="true" hostArchitectures="arm64,x86_64"/>
+    
+    <choices-outline>
+        <line choice="module"/>
+    </choices-outline>
+
+    <choice id="module" title="Module">
+        <pkg-ref id="org.audacity.openvino-module"/>
+    </choice>
+
+    <pkg-ref id="org.audacity.openvino-module">
+        #openvino-module.pkg
+        <must-close>
+            <app id="org.audacityteam.audacity"/>
+        </must-close>
+    </pkg-ref>
+
+</installer-gui-script>

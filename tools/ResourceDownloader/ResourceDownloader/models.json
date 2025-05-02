@@ -1,0 +1,256 @@
+[
+  {
+    "name": "Audio Super Resolution",
+    "description": "Versatile Audio Super Resolution",
+    "dir": "audiosr",
+    "files": [
+      {
+        "url": "https://huggingface.co/Intel/versatile_audio_super_resolution_openvino/resolve/9a97d7f128b22aea72e92862a3eccc310f88ac26/versatile_audio_sr_base_openvino_models.zip?download=true",
+        "sha256": "e4058862616e8eaa157a6a69d75daff49b63f997c69e59887c77a04ce6840d86",
+        "dsize": 930565310,
+        "esize": 234
+      }
+    ],
+    "children": [
+      {
+        "name": "Basic",
+        "description": "Basic",
+        "dir": "audiosr",
+        "files": [
+          {
+            "url": "https://huggingface.co/Intel/versatile_audio_super_resolution_openvino/resolve/9a97d7f128b22aea72e92862a3eccc310f88ac26/versatile_audio_sr_ddpm_basic_openvino_models.zip?download=true",
+            "sha256": "382e0693e35e4bbeae1a0f3223954250e13427108ae16c0fe8f786489bbe2767",
+            "dsize": 473639145,
+            "esize": 234
+          }
+        ]
+      },
+      {
+        "name": "Speech",
+        "description": "Speech",
+        "dir": "audiosr",
+        "files": [
+          {
+            "url": "https://huggingface.co/Intel/versatile_audio_super_resolution_openvino/resolve/9a97d7f128b22aea72e92862a3eccc310f88ac26/versatile_audio_sr_ddpm_speech_openvino_models.zip?download=true",
+            "sha256": "f44ee433da9e1aa6dd948142d81523c7a58213acfa0699a4014e1f6d30e8a349",
+            "dsize": 473616589,
+            "esize": 234
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "MusicGen",
+    "description": "MusicGen",
+    "dir": "musicgen",
+    "files": [
+      {
+        "url": "https://huggingface.co/Intel/musicgen-static-openvino/resolve/b2ad8083f3924ed704814b68c5df9cbbf2ad2aae/musicgen_small_enc_dec_tok_openvino_models.zip?download=true",
+        "sha256": "f5cdd695a52cf4c0619dd419c8bff4e71700ee805b547e86b7483423883d6f32",
+        "dsize": 279450559,
+        "esize": 234
+      }
+    ],
+    "children":[
+      {
+        "name": "Small (mono)",
+        "description": "Mono",
+        "dir": "musicgen",
+        "files": [
+          {
+            "url": "https://huggingface.co/Intel/musicgen-static-openvino/resolve/b2ad8083f3924ed704814b68c5df9cbbf2ad2aae/musicgen_small_stereo_openvino_models.zip?download=true",
+            "sha256": "1c6496267b22175ecdd2518b9ed8c9870454674fc08fac1c864ca62e3d87e8e7",
+            "dsize": 1154648066,
+            "esize": 234
+          }
+        ]
+      },
+      {
+        "name": "Small (stereo)",
+        "description": "Stereo",
+        "dir": "musicgen",
+        "files": [
+          {
+            "url": "https://huggingface.co/Intel/musicgen-static-openvino/resolve/b2ad8083f3924ed704814b68c5df9cbbf2ad2aae/musicgen_small_mono_openvino_models.zip?download=true",
+            "sha256": "b1e47df3ec60d0c5f70ba664fea636df9bc94710269ee72357a3353fd579afd9",
+            "dsize": 1098243900,
+            "esize": 234
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Whisper",
+    "description": "Whisper Base",
+    "dir": ".",
+    "files": [
+      {
+        "url": "https://huggingface.co/Intel/whisper.cpp-openvino-models/resolve/194efafbee09390bbf33f33d02d9856dacfdd162/ggml-base-models.zip?download=true",
+        "sha256": "18f6e87146bfe9986fa764657cca26695bcb7fa3ba5d77d6d6af1d38de720e4c",
+        "dsize": 171306938,
+        "esize": 234
+      }
+    ],
+    "children":[
+      {
+        "name": "Small",
+        "description": "Small",
+        "dir": ".",
+        "files": [
+          {
+            "url": "https://huggingface.co/Intel/whisper.cpp-openvino-models/resolve/194efafbee09390bbf33f33d02d9856dacfdd162/ggml-small-models.zip?download=true",
+            "sha256": "7efabdcb08ec09ee24b615db9fe86425114a46d87a25d1e3d14ecd7195dd4e9f",
+            "dsize": 610456149,
+            "esize": 234
+          }
+        ]
+      },
+      {
+        "name": "Small (English only)",
+        "description": "Small English",
+        "dir": ".",
+        "files": [
+          {
+            "url": "https://huggingface.co/Intel/whisper.cpp-openvino-models/resolve/194efafbee09390bbf33f33d02d9856dacfdd162/ggml-small.en-tdrz-models.zip?download=true",
+            "sha256": "ea825cb105e48aa0796e332c93827339dd60aa1a61633df14bb6611bcef26b95",
+            "dsize": 609030010,
+            "esize": 234
+          }
+        ]
+      },
+      {
+        "name": "Medium",
+        "description": "Medium",
+        "dir": ".",
+        "files": [
+          {
+            "url": "https://huggingface.co/Intel/whisper.cpp-openvino-models/resolve/5c2f20da06aa17198dbd778d4190383557c23b1b/ggml-medium-models.zip?download=true",
+            "sha256": "afd961c0bac5830dbcbd15826f49553a5d5fb8a09c7a24eb634304fa068fe59f",
+            "dsize": 2110515739,
+            "esize": 234
+          }
+        ]
+      },
+      {
+        "name": "Large v1",
+        "description": "Large V1",
+        "dir": ".",
+        "files": [
+          {
+            "url": "https://huggingface.co/Intel/whisper.cpp-openvino-models/resolve/9731937f2b9ca0aff8b8acd031ed77a1a378cc72/ggml-large-v1-models.zip?download=true",
+            "sha256": "fa187861eb46b701f242d63fc0067878de6345a71714d926c4b0eecf1ec0fffa",
+            "dsize": 4301056953,
+            "esize": 234
+          }
+        ]
+      },
+      {
+        "name": "Large v2",
+        "description": "Large V2",
+        "dir": ".",
+        "files": [
+          {
+            "url": "https://huggingface.co/Intel/whisper.cpp-openvino-models/resolve/dc08ae819b895594cae08b0210bee051462aba75/ggml-large-v2-models.zip?download=true",
+            "sha256": "ab306b0a0a93a731e56efbfa4e80448206bd9b5b863d5a99e40a3532d64ec754",
+            "dsize": 4285702502,
+            "esize": 234
+          }
+        ]
+      },
+      {
+        "name": "Large v3",
+        "description": "Large V3",
+        "dir": ".",
+        "files": [
+          {
+            "url": "https://huggingface.co/Intel/whisper.cpp-openvino-models/resolve/d0c3075c40e4938fb2a4cccfc91704106d3e7d12/ggml-large-v3-models.zip?download=true",
+            "sha256": "d61160dc5b1c1abc1dbdd6ae571fe4da87079fa3170156408f8775b493c15cdd",
+            "dsize": 4277163902,
+            "esize": 234
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Noise Suppression",
+    "description": "Noise Suppression",
+    "dir": ".",
+    "files": [],
+    "children":[
+      {
+        "name": "Deep Filter Net 2",
+        "description": "Deep Filter Net 2",
+        "dir": ".",
+        "files": [
+          {
+            "url": "https://huggingface.co/Intel/deepfilternet-openvino/resolve/995706bda3da69da0825074ba7dbc8a78067e980/deepfilternet2.zip?download=true",
+            "sha256": "9d10c9c77a64121587e7d94a3d4d5cfeb67e9bfd2e416d48d1f74ac725c4f66e",
+            "dsize": 8648697,
+            "esize": 234
+          }
+        ]
+      },
+      {
+        "name": "Deep Filter Net 3",
+        "description": "Deep Filter Net 3",
+        "dir": ".",
+        "files": [
+          {
+            "url": "https://huggingface.co/Intel/deepfilternet-openvino/resolve/995706bda3da69da0825074ba7dbc8a78067e980/deepfilternet3.zip?download=true",
+            "sha256": "fdc74e11439ca09a106f5bd77ed24002ef4d0e02114238a271c069d06172f341",
+            "dsize": 8004431,
+            "esize": 234
+          }
+        ]
+      },
+      {
+        "name": "Dense UNet",
+        "description": "Dense UNet",
+        "dir": ".",
+        "files": [
+          {
+            "url": "https://storage.openvinotoolkit.org/repositories/open_model_zoo/2023.0/models_bin/1/noise-suppression-denseunet-ll-0001/FP16/noise-suppression-denseunet-ll-0001.bin",
+            "sha256": "da59b41a656b2948a4b45580b4870614d2dfa071a7566555aea4547423888e08",
+            "dsize": 8625568,
+            "esize": 234
+          },
+          {
+            "url": "https://storage.openvinotoolkit.org/repositories/open_model_zoo/2023.0/models_bin/1/noise-suppression-denseunet-ll-0001/FP16/noise-suppression-denseunet-ll-0001.xml",
+            "sha256": "89116a01cc59f7ac3f1f1365c851e47c9089fd33ca86712c30dc1f0ee7d14803",
+            "dsize": 689820,
+            "esize": 234
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Music Separation",
+    "description": "Music Separation",
+    "dir": ".",
+    "children":[
+      {
+        "name": "Basic",
+        "description": "Basic",
+        "dir": ".",
+        "files": [
+            {
+              "url": "https://huggingface.co/Intel/demucs-openvino/resolve/97fc578fb57650045d40b00bc84c7d156be77547/htdemucs_v4.bin?download=true",
+              "sha256": "7aa84fa1f2b534bd6865a5609b8b5b028802fe761d6a09b1d30a1564f8fac6f8",
+              "dsize": 101167138,
+              "esize": 234
+            },
+            {
+              "url": "https://huggingface.co/Intel/demucs-openvino/resolve/97fc578fb57650045d40b00bc84c7d156be77547/htdemucs_v4.xml?download=true",
+              "sha256": "304e24325756089d6bb6583171dd1bea2327505e87c6cb6e010afea7463d9f0a",
+              "dsize": 1875040,
+              "esize": 234
+            }
+        ]
+      }
+    ]
+  }
+]

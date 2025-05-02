@@ -1,0 +1,10 @@
+--- modules/CMakeLists.txt.orig	2025-04-24 14:23:00.161466283 +0300
++++ modules/CMakeLists.txt	2025-04-24 14:23:19.002006483 +0300
+@@ -9,6 +9,7 @@
+ # The list of module sub-folders is ordered so that each folder occurs after any
+ # others that it depends on
+ set( FOLDERS
++   mod-openvino
+    etc
+    import-export
+    track-ui

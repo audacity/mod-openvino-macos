@@ -1,0 +1,74 @@
+#!/bin/bash
+
+# This script runs after the installation
+# It updates the Audacity configuration file to enable the OpenVINO module
+
+MODULE_NAME="mod-openvino"
+MODULE_PATH="/Library/Application Support/audacity/modules/${MODULE_NAME}.so"
+MODULE_DATETIME=$(stat -f "%m" "$MODULE_PATH" | xargs -I{} date -r {} +"%Y-%m-%dT%H:%M:%S")
+
+SCRIPT_DIR="$(dirname "$0")"
+APP_PATH="$SCRIPT_DIR/ResourceDownloader.app"
+LOGGED_IN_USER=$(stat -f "%Su" /dev/console)
+
+# Block until the app quits
+sudo -u "$LOGGED_IN_USER" open -W "$APP_PATH"
+
+update_config_section() {
+
+  local cfg_file="$1"
+  local section="$2"
+  local key="$3"
+  local value="$4"
+  local tmp_file="${cfg_file}.tmp"
+  original_owner=$(stat -f "%u" "$cfg_file")
+  original_group=$(stat -f "%g" "$cfg_file")
+  
+  awk -v section="$section" -v key="$key" -v value="$value" '
+    BEGIN {
+      found_section = 0
+      found_key = 0
+    }
+    $0 == "[" section "]" {
+      found_section = 1
+      print
+      next
+    }
+    found_section && $0 ~ "^" key{
+      print key "=" value
+      found_key = 1
+      found_section = 0
+      next
+    }
+    found_section && !found_key && /^\[.*\]/ {
+      print key "=" value
+      found_key = 1
+      found_section = 0
+    }
+    { print }
+    END {  }
+  ' "$cfg_file" > "$tmp_file" && mv "$tmp_file" "$cfg_file"
+  chown "$original_owner":"$original_group" "$cfg_file"
+}
+
+# Loop through all user home directories in /Users (excluding system users)
+for USER_HOME in /Users/*; do
+    # Only act on real user dirs
+    [ -d "$USER_HOME" ] || continue
+    [ -f "$USER_HOME/.zshrc" ] || [ -f "$USER_HOME/.bash_profile" ] || continue
+
+    CFG_PATH="$USER_HOME/Library/Application Support/audacity/audacity.cfg"
+    CFG_PATH1="$USER_HOME/Library/Application Support/audacity/_audacity.cfg"
+
+    # Skip if the config doesn't exist
+    [ -f "$CFG_PATH" ] || continue
+
+    echo "Updating $CFG_PATH"
+
+    update_config_section "$CFG_PATH" "Module" "mod-openvino" "1"
+    update_config_section "$CFG_PATH" "ModuleDateTime" "mod-openvino" "$MODULE_DATETIME"
+    update_config_section "$CFG_PATH" "ModulePath" "mod-openvino" "$MODULE_PATH"
+
+done
+
+exit 0

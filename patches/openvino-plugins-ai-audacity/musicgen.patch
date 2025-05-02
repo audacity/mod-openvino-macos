@@ -1,0 +1,11 @@
+--- mod-openvino/musicgen/music_gen_decoder_cl.cpp.orig	2025-04-24 14:58:41.839354735 +0300
++++ mod-openvino/musicgen/music_gen_decoder_cl.cpp	2025-04-24 15:00:48.024587074 +0300
+@@ -521,7 +521,7 @@
+                {
+                   //slice the new key values into the existing past_key_vals buffer using OpenCL.
+                   std::array<size_t, 3> srcOrigin = { 0, 0, 0 }; // Start at the beginning of the source buffer
+-                  std::array<size_t, 3> dstOrigin = { 0, _past_length,  0 };
++                  std::array<size_t, 3> dstOrigin = { 0, (unsigned long) _past_length,  0 };
+ 
+                   // Size of one element
+                   std::array<size_t, 3> region = { sizeof(ov::float16) * past_key_values_shape[3], 1, past_key_values_shape[0] * past_key_values_shape[1] };
