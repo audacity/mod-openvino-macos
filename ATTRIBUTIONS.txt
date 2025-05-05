@@ -1,0 +1,30 @@
+ATTRIBUTION NOTICE
+
+This software includes components licensed under various open-source licenses.
+
+Please review the following attributions and license information:
+
+OpenVINO AI Plugins for Audacity
+   - License: GNU General Public License v3.0
+   - Source: https://github.com/intel/openvino-plugins-ai-audacity
+   - License Text: https://github.com/intel/openvino-plugins-ai-audacity/blob/main/LICENSE.txt
+
+OpenVINO™ Toolkit
+   - License: Apache License 2.0
+   - Source: https://github.com/openvinotoolkit/openvino
+   - License Text: https://github.com/openvinotoolkit/openvino/blob/master/LICENSE
+
+whisper.cpp by the ggml authors
+   - License: MIT License
+   - Source: https://github.com/ggerganov/whisper.cpp
+   - License Text: https://github.com/ggerganov/whisper.cpp/blob/master/LICENSE
+
+LibTorch (PyTorch C++ API)
+   - License: BSD 3-Clause License
+   - Source: https://github.com/pytorch/pytorch
+   - License Text: https://github.com/pytorch/pytorch/blob/main/LICENSE
+
+libomp (LLVM OpenMP Runtime)
+   - License: Apache License 2.0 with LLVM Exception
+   - Source: https://github.com/llvm/llvm-project/tree/main/openmp
+   - License Text: https://github.com/llvm/llvm-project/blob/main/openmp/LICENSE.TXT
