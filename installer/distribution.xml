@@ -4,7 +4,6 @@
     
     <welcome file="Welcome.html"/>
     <license file="License.html"/>
-    <readme file="ReadMe.html"/>
     <conclusion file="Conclusion.html"/>
 
     <options customize="never" require-scripts="false" rootVolumeOnly="true" hostArchitectures="arm64,x86_64"/>
