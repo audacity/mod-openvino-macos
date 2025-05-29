@@ -166,6 +166,6 @@ pkgbuild \
 productbuild  --distribution distribution.xml \
   --resources Resources \
   --package-path ./packages \
-  ./Audacity-OpenVINO.pkg
+  ./Audacity-OpenVINO-${MODULE_VERSION}-${ARCH}.pkg
 
 echo "Done."

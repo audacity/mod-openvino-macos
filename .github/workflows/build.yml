@@ -46,7 +46,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: mod-openvino-arm64
-          path: ${{ env.STAGING_PATH }}/Audacity-OpenVINO.pkg 
+          path: ${{ env.STAGING_PATH }}/Audacity-OpenVINO*.pkg 
 
   build-openvino-plugins-intel:
     runs-on: macos-14
@@ -77,7 +77,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: mod-openvino-x86
-          path: ${{ env.STAGING_PATH }}/Audacity-OpenVINO.pkg 
+          path: ${{ env.STAGING_PATH }}/Audacity-OpenVINO*.pkg 
     
   build-openvino-plugins-universal:
     runs-on: macos-latest

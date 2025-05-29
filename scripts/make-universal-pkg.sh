@@ -47,8 +47,8 @@ process_file() {
 echo "Extracting PKGs"
 cd universal || exit 1
 
-pkgutil --expand-full "mod-openvino-arm64/Audacity-OpenVINO.pkg" openvino-module-arm64
-pkgutil --expand-full "mod-openvino-x86/Audacity-OpenVINO.pkg" openvino-module-x86
+pkgutil --expand-full mod-openvino-arm64/Audacity-OpenVINO*.pkg openvino-module-arm64
+pkgutil --expand-full mod-openvino-x86/Audacity-OpenVINO*.pkg openvino-module-x86
 
 ARM_DIR="openvino-module-arm64/"
 X86_DIR="openvino-module-x86/"
