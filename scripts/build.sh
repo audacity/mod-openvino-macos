@@ -12,12 +12,17 @@ if [[ "$ARCH" == "arm64" ]]; then
   OPENVINO_URL="https://storage.openvinotoolkit.org/repositories/openvino/packages/2024.0/macos/m_openvino_toolkit_macos_11_0_2024.0.0.14509.34caeefd078_arm64.tgz"
   OPENVINO_FOLDER="m_openvino_toolkit_macos_11_0_2024.0.0.14509.34caeefd078_arm64"
   LIBTORCH_URL="https://download.pytorch.org/libtorch/cpu/libtorch-macos-arm64-2.2.2.zip"
+  LIBOMP_LIB_DIR="/opt/homebrew/opt/libomp/lib/"
 elif [[ "$ARCH" == "x86_64" ]]; then
   MACOS_DEPLOYMENT_TARGET="10.15"
   OV_ARCH_NAME="intel64"
   OPENVINO_URL="https://storage.openvinotoolkit.org/repositories/openvino/packages/2024.0/macos/m_openvino_toolkit_macos_10_15_2024.0.0.14509.34caeefd078_x86_64.tgz"
   OPENVINO_FOLDER="m_openvino_toolkit_macos_10_15_2024.0.0.14509.34caeefd078_x86_64"
   LIBTORCH_URL="https://download.pytorch.org/libtorch/cpu/libtorch-macos-x86_64-2.2.2.zip"
+  LIBOMP_LIB_DIR="/usr/local/opt/libomp/lib/"
+  echo "Install x86 brew"
+  arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  arch -x86_64 /usr/local/bin/brew install libomp  
 else
   echo "Unsupported architecture: $ARCH"
   exit 1
@@ -33,7 +38,6 @@ PACKAGE_PATH="$ROOT_DIR/packages"
 BUILD_PATH="$ROOT_DIR/build"
 STAGING_PATH="$ROOT_DIR/staging"
 
-LIBOMP_LIB_DIR="/opt/homebrew/opt/libomp/lib/"
 OPENCL_INCLUDE_DIR="/opt/homebrew/opt/opencl-clhpp-headers/include"
 
 echo "Applying patches..."
@@ -142,6 +146,7 @@ xcodebuild \
   -scheme "$SCHEME" \
   -configuration "$CONFIG" \
   -derivedDataPath "$BUILD_DIR" \
+  -arch "$ARCH" \
   clean build
 
 APP_PATH="$BUILD_DIR/Build/Products/$CONFIG/$SCHEME.app"

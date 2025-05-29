@@ -76,6 +76,36 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: mod-openvino-intel
+          name: mod-openvino-x86
           path: ${{ env.STAGING_PATH }}/Audacity-OpenVINO.pkg 
+    
+  build-openvino-plugins-universal:
+    runs-on: macos-latest
+    needs: [build-openvino-plugins-arm64, build-openvino-plugins-intel]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          path: ${{ github.workspace }}
 
+      - name: Download arm64 artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: mod-openvino-arm64
+          path: universal/mod-openvino-arm64
+      
+      - name: Download intel artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: mod-openvino-x86
+          path: universal/mod-openvino-x86
+      
+      - name: Make univeral PKG
+        run: |
+          scripts/make-universal-pkg.sh
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mod-openvino-universal
+          path: ${{ env.STAGING_PATH }}/Audacity-OpenVINO*.pkg
