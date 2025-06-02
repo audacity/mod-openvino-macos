@@ -140,6 +140,11 @@ class DownloadManager: ObservableObject {
     private func moveDownloadedFile(_ tempURL: URL, file: FileInfo, to destinationDir: URL) throws -> (URL, String) {
         let filename = URL(string: file.url)!.lastPathComponent
         let destinationPath = destinationDir.appendingPathComponent(filename)
+
+        if FileManager.default.fileExists(atPath: destinationPath.path) {
+            try FileManager.default.removeItem(at: destinationPath)
+        }
+
         try FileManager.default.moveItem(at: tempURL, to: destinationPath)
         return (destinationPath, filename)
     }
