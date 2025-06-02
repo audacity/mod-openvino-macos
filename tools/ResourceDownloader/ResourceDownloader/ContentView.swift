@@ -53,6 +53,7 @@ struct ContentView: View {
 }
 
 struct CheckboxView: View {
+    @State private var showDescription = false
     @ObservedObject var node: Node
     
     var body: some View {
@@ -63,6 +64,17 @@ struct CheckboxView: View {
                         .foregroundColor(node.state == .checked ? .blue : .primary)
                     Text(node.name)
                         .font(.body)
+
+                    Image(systemName: "info.circle")
+                        .foregroundColor(.blue)
+                        .onTapGesture {
+                            showDescription.toggle()
+                        }
+                        .popover(isPresented: $showDescription, arrowEdge: .trailing) {
+                            Text(node.description)
+                                .padding()
+                                .frame(width: 300)
+                        }
                 }
                 HStack(spacing: 16) {
                     Text("Download: \(node.downloadSizeRecursive.formatted(.byteCount(style: .file)))")
