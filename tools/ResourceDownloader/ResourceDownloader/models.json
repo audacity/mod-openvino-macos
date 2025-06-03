@@ -1,7 +1,7 @@
 [
   {
     "name": "Audio Super Resolution",
-    "description": "Audio super resolution improves the quality of low-resolution audio recordings by reconstructing high-resolution audio from low-resolution inputs.",
+    "description": "Audio super resolution improves the quality of low-resolution audio recordings. It can be helpful in restoring phonecall-quality audio to something closer to CD-quality.",
     "dir": "audiosr",
     "files": [
       {
@@ -207,8 +207,8 @@
         ]
       },
       {
-        "name": "Dense UNet",
-        "description": "Noise suppression model based on Dense UNet.",
+        "name": "(Legacy) Dense UNet",
+        "description": "Noise suppression model based on Dense UNet. An older model, typically performing worse than Deep Filter Net.",
         "dir": ".",
         "files": [
           {
