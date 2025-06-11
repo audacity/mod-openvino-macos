@@ -1,11 +1,12 @@
 This repository provides tools and scripts to build and integrate OpenVINO™ AI plugins with Audacity on macOS.  
-These plugins enable AI-powered audio effects, generators, and analyzers that run entirely on your local machine—no internet connection required.
+These plugins enable AI-powered audio effects, generators, and analyzers that run entirely on your local machine, no internet connection required.
+
+NOTE: This project does not include the OpenVINO module itself, its source code can be found at [OpenVINO™ GitHub](https://github.com/intel/openvino-plugins-ai-audacity)
 
 ### Features
 
-- **Local AI Processing:** Run AI models locally using OpenVINO™, leveraging your system's CPU, GPU, or NPU.
+- **Local AI Processing:** Run AI models locally using OpenVINO™.
 - **AI-Powered Audio Tools:** Access advanced audio effects, generators, and analyzers within Audacity.
-- **macOS Compatibility:** Tailored scripts and patches to build and integrate plugins on macOS systems.
 
 ### Prerequisites
 
@@ -48,8 +49,8 @@ or
 
 ## Troubleshooting
 
-- **Plugin Not Loading:** Ensure that that your version of Audacity compatible with the plugin.
-- **Build Errors:** Consult the build logs for specific error messages and ensure that all required development tools are properly configured.
+- **Plugin not loading:** Ensure that that your version of Audacity compatible with the plugin.
+- **Build errors:** Consult the build logs for specific error messages and ensure that all required development tools are properly configured. You may want to check the CI logs for reference.
 
 ## Contributing
 
