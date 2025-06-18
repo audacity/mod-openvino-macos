@@ -1,6 +1,8 @@
---- mod-openvino/musicgen/music_gen_decoder_cl.cpp.orig	2025-04-24 14:58:41.839354735 +0300
-+++ mod-openvino/musicgen/music_gen_decoder_cl.cpp	2025-04-24 15:00:48.024587074 +0300
-@@ -521,7 +521,7 @@
+diff --git a/mod-openvino/musicgen/music_gen_decoder_cl.cpp b/mod-openvino/musicgen/music_gen_decoder_cl.cpp
+index 62c0858..82efd7f 100644
+--- a/mod-openvino/musicgen/music_gen_decoder_cl.cpp
++++ b/mod-openvino/musicgen/music_gen_decoder_cl.cpp
+@@ -521,7 +521,7 @@ namespace ov_musicgen
                 {
                    //slice the new key values into the existing past_key_vals buffer using OpenCL.
                    std::array<size_t, 3> srcOrigin = { 0, 0, 0 }; // Start at the beginning of the source buffer
@@ -9,3 +11,70 @@
  
                    // Size of one element
                    std::array<size_t, 3> region = { sizeof(ov::float16) * past_key_values_shape[3], 1, past_key_values_shape[0] * past_key_values_shape[1] };
+diff --git a/mod-openvino/musicgen/musicgen.cpp b/mod-openvino/musicgen/musicgen.cpp
+index 736ec15..df4b4ad 100644
+--- a/mod-openvino/musicgen/musicgen.cpp
++++ b/mod-openvino/musicgen/musicgen.cpp
+@@ -4,6 +4,24 @@
+ #include <ittutils.h>
+ #include "musicgen_for_conditional_generation.h"
+ 
++#ifdef __APPLE__
++
++#include <dlfcn.h>
++
++static void* getModuleSymbol() {
++   return reinterpret_cast<void*>(&getModuleSymbol);
++}
++
++static std::string getModulePath() {
++   using namespace std::filesystem;
++
++   Dl_info info;
++   dladdr(reinterpret_cast<void*>(getModuleSymbol()), &info);
++   return path(info.dli_fname).parent_path();
++}
++
++#endif
++
+ namespace ov_musicgen
+ {
+    struct MusicGen::Impl
+@@ -14,20 +32,24 @@ namespace ov_musicgen
+ 
+          ov::Core core;
+ 
+-#if OPENVINO_VERSION_MAJOR>=2024
+-#ifdef WIN32
+-         core.add_extension("openvino_tokenizers.dll");
+-#else
+-         core.add_extension("libopenvino_tokenizers.so");
+-#endif
+-#elif (OPENVINO_VERSION_MAJOR==2023)&&(OPENVINO_VERSION_MINOR==3)
+-#ifdef WIN32
+-         core.add_extension("user_ov_extensions.dll");
+-#else
+-         core.add_extension("libuser_ov_extensions.so");
+-#endif
++#if OPENVINO_VERSION_MAJOR >= 2024
++  #ifdef _WIN32
++    core.add_extension("openvino_tokenizers.dll");
++  #elif defined(__APPLE__)
++    core.add_extension(getModulePath() + "/libs/libopenvino_tokenizers.dylib");
++  #else
++    core.add_extension("libopenvino_tokenizers.so");
++  #endif
++#elif (OPENVINO_VERSION_MAJOR == 2023) && (OPENVINO_VERSION_MINOR == 3)
++  #ifdef _WIN32
++    core.add_extension("user_ov_extensions.dll");
++  #elif defined(__APPLE__)
++    core.add_extension(getModulePath() + "/libs/user_ov_extensions.dylib");
++  #else
++    core.add_extension("libuser_ov_extensions.so");
++  #endif
+ #else
+-#error OpenVINO 2023.3.0 or later is required.
++  #error OpenVINO 2023.3.0 or later is required.
+ #endif
+ 
+          auto tokenizer_model_path = FullPath(config.model_folder, "musicgen-small-tokenizer.xml");
