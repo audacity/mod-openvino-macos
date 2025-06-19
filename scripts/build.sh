@@ -159,7 +159,7 @@ pkgbuild \
   --root dist \
   --scripts Scripts \
   --install-location / \
-  --identifier org.audacityteam.audacity \
+  --identifier org.audacityteam.openvino-module \
   --version "$MODULE_VERSION" \
   packages/openvino-module.pkg
 

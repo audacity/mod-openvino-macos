@@ -13,10 +13,10 @@
     </choices-outline>
 
     <choice id="module" title="Module">
-        <pkg-ref id="org.audacity.openvino-module"/>
+        <pkg-ref id="org.audacityteam.openvino-module"/>
     </choice>
 
-    <pkg-ref id="org.audacity.openvino-module">
+    <pkg-ref id="org.audacityteam.openvino-module">
         #openvino-module.pkg
         <must-close>
             <app id="org.audacityteam.audacity"/>
